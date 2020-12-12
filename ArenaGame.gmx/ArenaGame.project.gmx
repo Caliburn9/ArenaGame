@@ -43,7 +43,9 @@
       <sprite>sprites\s_enemy_left</sprite>
     </sprites>
     <sprite>sprites\s_solid</sprite>
-    <sprite>sprites\s_damage</sprite>
+    <sprite>sprites\s_hitbox</sprite>
+    <sprite>sprites\s_hurtbox</sprite>
+    <sprite>sprites\s_enemy</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -56,6 +58,11 @@
       <script>scripts\scr_attack_state.gml</script>
       <script>scripts\scr_move_state.gml</script>
     </scripts>
+    <scripts name="Enemy Scripts">
+      <script>scripts\scr_enemy_chase_state.gml</script>
+      <script>scripts\scr_enemy_attack_state.gml</script>
+      <script>scripts\scr_check_for_player.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Player">
@@ -65,17 +72,19 @@
     </objects>
     <objects name="Non-Sprite">
       <object>objects\o_player_parent</object>
+      <object>objects\o_enemy_parent</object>
       <object>objects\o_chr_select</object>
       <object>objects\o_chr_spawn</object>
       <object>objects\o_camera</object>
     </objects>
     <object>objects\o_solid</object>
+    <object>objects\o_enemy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test_menu</room>
     <room>rooms\rm_test_room</room>
   </rooms>
-  <constants number="12">
+  <constants number="17">
     <constant name="WARRIOR">0</constant>
     <constant name="ARCHER">1</constant>
     <constant name="MAGE">2</constant>
@@ -88,6 +97,11 @@
     <constant name="UP">1</constant>
     <constant name="LEFT">2</constant>
     <constant name="DOWN">3</constant>
+    <constant name="ENEM_CHASE">0</constant>
+    <constant name="ENEM_ATTACK">1</constant>
+    <constant name="ENEM_DAMAGED">2</constant>
+    <constant name="ENEM_DEAD">3</constant>
+    <constant name="ENEM_SCATTER">4</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

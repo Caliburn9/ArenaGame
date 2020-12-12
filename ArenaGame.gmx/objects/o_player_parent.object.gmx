@@ -63,6 +63,8 @@ if (hp &lt;= 0) {
     room_restart();
 }
 
+depth -= y;
+
 
 </string>
           </argument>

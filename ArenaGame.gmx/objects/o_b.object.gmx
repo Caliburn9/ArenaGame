@@ -63,7 +63,6 @@ sprite[DOWN, ATTACK] = s_b_attack_down;
             <kind>1</kind>
             <string>///Step Event
 event_inherited();
-depth = -y;
 sprite_index = sprite[face, movement];
 script_execute(state);
 </string>
