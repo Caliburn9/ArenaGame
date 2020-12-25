@@ -44,7 +44,6 @@
     </sprites>
     <sprite>sprites\s_solid</sprite>
     <sprite>sprites\s_hitbox</sprite>
-    <sprite>sprites\s_hurtbox</sprite>
     <sprite>sprites\s_enemy</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -55,13 +54,15 @@
       <script>scripts\scr_get_input.gml</script>
     </scripts>
     <scripts name="Player Scripts">
-      <script>scripts\scr_attack_state.gml</script>
       <script>scripts\scr_move_state.gml</script>
+      <script>scripts\scr_attack_state.gml</script>
     </scripts>
     <scripts name="Enemy Scripts">
       <script>scripts\scr_enemy_chase_state.gml</script>
       <script>scripts\scr_enemy_attack_state.gml</script>
       <script>scripts\scr_check_for_player.gml</script>
+      <script>scripts\scr_enemy_damaged_state.gml</script>
+      <script>scripts\scr_collision_between_enemy.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -79,6 +80,8 @@
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_enemy</object>
+    <object>objects\o_damage</object>
+    <object>objects\o_projectile</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test_menu</room>
