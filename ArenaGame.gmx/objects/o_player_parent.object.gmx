@@ -35,6 +35,7 @@ dir = 0;
 state = scr_move_state;
 face = RIGHT;
 movement = MOVE;
+attacked = false;
 hp = 56;
 </string>
           </argument>

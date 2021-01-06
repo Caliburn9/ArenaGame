@@ -80,9 +80,10 @@ hit = false;
           <argument>
             <kind>1</kind>
             <string>///Damage enemy
-if (other.id != creator and hit == false) {
+if (other.id != creator and hit == false and other.invul == false) {
     //Create damage variable and reduce health
-    //other.hp -= damage; 
+    other.hp -= 1; //Replace with "damage" stat
+    other.invul = true;
     
     hit = true;
     

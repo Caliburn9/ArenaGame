@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///Initialize enemy
 event_inherited();
+hp = 2;
 </string>
           </argument>
         </arguments>
@@ -120,6 +121,8 @@ event_inherited();
             <kind>1</kind>
             <string>///Step
 event_inherited();
+
+
 </string>
           </argument>
         </arguments>
@@ -166,7 +169,7 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///Attack the player
-if (state != scr_enemy_stall_state) {
+if (state != scr_enemy_stall_state and invul == false) {
     state = scr_enemy_attack_state;
 }
 </string>
