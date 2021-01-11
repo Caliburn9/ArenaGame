@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///Initialize enemy
 event_inherited();
+hp = 5;
 </string>
           </argument>
         </arguments>

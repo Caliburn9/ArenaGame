@@ -84,6 +84,7 @@
       <object>objects\o_camera</object>
       <object>objects\o_spawner</object>
       <object>objects\o_spawn_point</object>
+      <object>objects\o_boss_spawn_point</object>
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_enemy</object>
@@ -96,7 +97,7 @@
     <room>rooms\rm_test_menu</room>
     <room>rooms\rm_test_room</room>
   </rooms>
-  <constants number="17">
+  <constants number="19">
     <constant name="WARRIOR">0</constant>
     <constant name="ARCHER">1</constant>
     <constant name="MAGE">2</constant>
@@ -114,6 +115,8 @@
     <constant name="ENEM_DAMAGED">2</constant>
     <constant name="ENEM_DEAD">3</constant>
     <constant name="ENEM_SCATTER">4</constant>
+    <constant name="ENEM_WAVE">0</constant>
+    <constant name="BOSS_WAVE">1</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

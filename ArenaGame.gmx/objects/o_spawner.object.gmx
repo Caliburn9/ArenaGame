@@ -27,9 +27,10 @@
             <kind>1</kind>
             <string>///Initialise the spawner
 //Static variables
-wave = 1; //The current wave
+wave = 0; //The current wave
 delay = 1; //Spawner delay
 spawned = false; //Spawner delay control variable
+cur_wave = ENEM_WAVE; //Variable that defines whether the current wave will spawn enemies or a boss
 
 //Dynamic variables
 max_wave = 0; //Maximum number of waves 
@@ -59,7 +60,7 @@ globalvar boss_type; //Type of boss to spawn
           <argument>
             <kind>1</kind>
             <string>///Alarm 0
-if (spawned == true) {
+if (spawned == true and wave != max_wave) {
     spawned = false;
 }
 </string>
@@ -85,23 +86,68 @@ if (spawned == true) {
           <argument>
             <kind>1</kind>
             <string>///Spawner logic
+if (wave &lt; max_wave) {
+    cur_wave = ENEM_WAVE;
+} else if (wave == max_wave) {
+    cur_wave = BOSS_WAVE;
+}
+
 e = instance_exists(enem_type);
 b = instance_exists(boss_type);
 
-if (!e and wave &lt; max_wave) {
-    if (spawned == false) {
-        repeat(enem_per_spawner) {
-            with(o_spawn_point) {
-                instance_create(x, y, enem_type);
-            }
+if (cur_wave == ENEM_WAVE) {
+    if (!e and spawned == false) {
+        if (enem_per_spawner &lt; max_wave) {
+            repeat(enem_per_spawner) {
+                with(o_spawn_point) {
+                    instance_create(x, y, enem_type);
+                }
+            }       
         }   
-        wave++;
-        enem_per_spawner++;
-        spawned = true;
-        alarm[0] = delay;
+    wave += 1;
+    enem_per_spawner += 1;
     }
-} else if (!b and !e and wave &gt;= max_wave){
-    instance_create(x, y, boss_type);
+    spawned = true;
+    alarm[0] = delay;
+} else if (cur_wave == BOSS_WAVE) {
+    enem_per_spawner = 0;
+    if (!b) { 
+        with(o_boss_spawn_point) {
+            instance_create(x, y, boss_type);
+        }      
+    }
+}
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(x, y, wave);
+draw_text(x, y+32, max_wave);
+if (cur_wave == ENEM_WAVE) {
+    draw_text(x, y+48, "Enemy");
+} else if (cur_wave == BOSS_WAVE) {
+    draw_text(x, y+48, "Boss");
 }
 </string>
           </argument>

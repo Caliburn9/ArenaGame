@@ -1,6 +1,7 @@
 ///scr_collision_between_enemy(hspd, vspd)
 var hspd = argument0;
 var vspd = argument1;
+
 if (place_meeting(x+hspd, y, o_solid))
 {
     while (!place_meeting(x+sign(hspd), y, o_solid))
