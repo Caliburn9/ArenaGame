@@ -46,7 +46,7 @@
     <sprite>sprites\s_hitbox</sprite>
     <sprite>sprites\s_enemy</sprite>
     <sprite>sprites\s_boss_temp</sprite>
-    <sprite>sprites\s_enemy_2</sprite>
+    <sprite>sprites\s_boss_temp_2</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -85,11 +85,12 @@
       <object>objects\o_spawner</object>
       <object>objects\o_spawn_point</object>
       <object>objects\o_boss_spawn_point</object>
+      <object>objects\o_player_stats</object>
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_enemy</object>
     <object>objects\o_boss</object>
-    <object>objects\o_enemy_2</object>
+    <object>objects\o_boss_2</object>
     <object>objects\o_damage</object>
     <object>objects\o_projectile</object>
   </objects>
@@ -97,7 +98,7 @@
     <room>rooms\rm_test_menu</room>
     <room>rooms\rm_test_room</room>
   </rooms>
-  <constants number="19">
+  <constants number="23">
     <constant name="WARRIOR">0</constant>
     <constant name="ARCHER">1</constant>
     <constant name="MAGE">2</constant>
@@ -117,6 +118,10 @@
     <constant name="ENEM_SCATTER">4</constant>
     <constant name="ENEM_WAVE">0</constant>
     <constant name="BOSS_WAVE">1</constant>
+    <constant name="HEALTH">0</constant>
+    <constant name="DAMAGE">1</constant>
+    <constant name="SPEED">2</constant>
+    <constant name="ATK_SPEED">3</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
