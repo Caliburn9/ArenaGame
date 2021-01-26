@@ -44,6 +44,29 @@ sprite[DOWN, ATTACK] = s_b_attack_down;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -110,17 +133,9 @@ script_execute(state);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///!Test! Reset movement to MOVE
-/*
-movement = MOVE;
-state = scr_move_state;
-script_execute(state);
-attacked = false;
-*/
-
+            <string>///Reset movement to MOVE
 if (state == scr_attack_state) {
    state = scr_move_state;
-   attacked = false;
 }
 </string>
           </argument>

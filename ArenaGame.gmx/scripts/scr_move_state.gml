@@ -4,9 +4,11 @@ movement = MOVE;
 
 
 //Attack
-if (attack_key) {
+if (attack_key and attacked == false) {
+    var stats = o_player_stats;
     state = scr_attack_state;
     image_index = 0;
+    alarm[1] = room_speed*stats.atk_spd;
 }
 
 //Get the axis

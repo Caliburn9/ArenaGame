@@ -31,28 +31,27 @@
 playerStat[WARRIOR, HEALTH] = 7;
 playerStat[WARRIOR, DAMAGE] = 2;
 playerStat[WARRIOR, SPEED] = 1.5;
-playerStat[WARRIOR, ATK_SPEED] = 3;
+playerStat[WARRIOR, ATK_SPEED] = .75;
 
 //Archer stats
 playerStat[ARCHER, HEALTH] = 6;
 playerStat[ARCHER, DAMAGE] = .5;
 playerStat[ARCHER, SPEED] = 4;
-playerStat[ARCHER, ATK_SPEED] = 5;
-
+playerStat[ARCHER, ATK_SPEED] = .25;
 
 //Mage stats
 playerStat[MAGE, HEALTH] = 5;
 playerStat[MAGE, DAMAGE] = 1;
 playerStat[MAGE, SPEED] = 2;
-playerStat[MAGE, ATK_SPEED] = 4;
+playerStat[MAGE, ATK_SPEED] = .5;
 
 //~Static Stats~
-hp = playerStat[me, HEALTH]; //*
+hp = playerStat[me, HEALTH];
 maxhp = hp;
 stamina = 3;
 maxstamina = stamina;
-dmg = playerStat[me, DAMAGE]; //*
-spd = playerStat[me, SPEED]; //*
+dmg = playerStat[me, DAMAGE];
+spd = playerStat[me, SPEED];
 atk_spd = playerStat[me, ATK_SPEED];
 </string>
           </argument>

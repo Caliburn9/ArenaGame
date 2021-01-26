@@ -30,13 +30,13 @@ switch (face){
 } 
 
 //Create hitbox or projectile based on character        
-if (me == WARRIOR) {
+if (me == WARRIOR and attacked == false) {
     var damage = instance_create(xx, yy, o_damage);
     damage.creator = id;
     //damage.damage = obj_player_stats.attack;
     attacked = true;
-                
-} else if (me == ARCHER) {
+                 
+} else if (me == ARCHER and attacked == false) {
     if (!instance_exists(o_projectile)) {
         var projectile = instance_create(xx, yy, o_projectile);
         projectile.creator = id;
@@ -51,7 +51,7 @@ if (me == WARRIOR) {
     //damage.damage = obj_player_stats.attack;
     attacked = true;
         
-} else if (me == MAGE) {
+} else if (me == MAGE and attacked == false) {
     if (!instance_exists(o_projectile)) {
         var projectile = instance_create(xx, yy, o_projectile);
         projectile.creator = id;
@@ -64,7 +64,7 @@ if (me == WARRIOR) {
     }
     }
     //damage.damage = obj_player_stats.attack;
-    attacked = true;   
+    attacked = true;  
 }
 
 
