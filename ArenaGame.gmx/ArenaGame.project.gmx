@@ -98,7 +98,7 @@
     <room>rooms\rm_test_menu</room>
     <room>rooms\rm_test_room</room>
   </rooms>
-  <constants number="23">
+  <constants number="24">
     <constant name="WARRIOR">0</constant>
     <constant name="ARCHER">1</constant>
     <constant name="MAGE">2</constant>
@@ -122,6 +122,7 @@
     <constant name="DAMAGE">1</constant>
     <constant name="SPEED">2</constant>
     <constant name="ATK_SPEED">3</constant>
+    <constant name="STAMINA_COST">1</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

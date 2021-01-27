@@ -4,11 +4,12 @@ movement = MOVE;
 
 
 //Attack
-if (attack_key and attacked == false) {
+if (attack_key and attacked == false and o_player_stats.stamina >= STAMINA_COST) {
     var stats = o_player_stats;
     state = scr_attack_state;
     image_index = 0;
     alarm[1] = room_speed*stats.atk_spd;
+    o_player_stats.stamina -= STAMINA_COST;
 }
 
 //Get the axis

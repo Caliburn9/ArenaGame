@@ -33,7 +33,7 @@ switch (face){
 if (me == WARRIOR and attacked == false) {
     var damage = instance_create(xx, yy, o_damage);
     damage.creator = id;
-    //damage.damage = obj_player_stats.attack;
+    damage.dmg_ = o_player_stats.dmg;
     attacked = true;
                  
 } else if (me == ARCHER and attacked == false) {
@@ -46,9 +46,9 @@ if (me == WARRIOR and attacked == false) {
         var shoot_dir = other.face * 90;
         direction = shoot_dir;
         image_angle = shoot_dir;   
+        projectile.dmg_ = o_player_stats.dmg;
     }
     }
-    //damage.damage = obj_player_stats.attack;
     attacked = true;
         
 } else if (me == MAGE and attacked == false) {
@@ -60,10 +60,10 @@ if (me == WARRIOR and attacked == false) {
         speed = 10;
         var shoot_dir = other.face * 90;
         direction = shoot_dir;
-        image_angle = shoot_dir;   
+        image_angle = shoot_dir; 
+        projectile.dmg_ = o_player_stats.dmg;  
     }
     }
-    //damage.damage = obj_player_stats.attack;
     attacked = true;  
 }
 
