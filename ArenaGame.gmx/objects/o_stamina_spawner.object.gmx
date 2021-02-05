@@ -25,43 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialise player 
-globalvar me;
-image_speed = 0;
-hspd = 0;
-vspd = 0;
-len = 0;
-dir = 0;
-state = scr_move_state;
-face = RIGHT;
-movement = MOVE;
-attacked = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Set "attacked" back to false
-if (attacked == true) {
-    attacked = false;
-}
+            <string>///Initialize
+stamina_count = 0;
+max_stamina_count = 5;
+spawn_timer = room_speed*5;
+alarm[0] = spawn_timer;
 </string>
           </argument>
         </arguments>
@@ -84,10 +52,7 @@ if (attacked == true) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set state from "damaged" back to "move"
-if (state == scr_damaged_state) {
-    state = scr_move_state;
-}
+            <string>///Spawn alarm
 </string>
           </argument>
         </arguments>
@@ -110,43 +75,11 @@ if (state == scr_damaged_state) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Step
-spd = o_player_stats.spd;
-if (o_player_stats.hp &lt;= 0) {
-    room_restart();
-}
-
-depth -= y;
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="o_stamina">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Regenerate stamina
-if (o_player_stats.stamina &lt; o_player_stats.maxstamina) {
-    with (other) {
-        instance_destroy();
-    }
-    o_player_stats.stamina++;
+            <string>///Randomly spawn stamina item
+if (alarm[0] == 0 and stamina_count &lt;= max_stamina_count) {
+    instance_create(random(view_wview), random(view_hview), o_stamina);
+    alarm[0] = spawn_timer;
+    stamina_count++;
 }
 </string>
           </argument>
