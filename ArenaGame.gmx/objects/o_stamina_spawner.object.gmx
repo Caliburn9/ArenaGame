@@ -30,6 +30,7 @@ stamina_count = 0;
 max_stamina_count = 5;
 spawn_timer = room_speed*5;
 alarm[0] = spawn_timer;
+target_ = -1;
 </string>
           </argument>
         </arguments>
@@ -76,8 +77,21 @@ alarm[0] = spawn_timer;
           <argument>
             <kind>1</kind>
             <string>///Randomly spawn stamina item
-if (alarm[0] == 0 and stamina_count &lt;= max_stamina_count) {
-    instance_create(random(view_wview), random(view_hview), o_stamina);
+if (instance_exists(o_a)) {
+    target_ = o_a;
+} else if (instance_exists(o_b)) {
+    target_ = o_b;
+} else if (instance_exists(o_c)) {
+    target_ = o_c;
+} 
+
+val = choose(32, 64, 128, 144)
+
+xp = choose(target_.x + val, target_.x - val);
+yp = choose(target_.y + val, target_.y - val);
+
+if (alarm[0] == 0 and stamina_count &lt; max_stamina_count) {
+    instance_create(xp, yp, o_stamina);
     alarm[0] = spawn_timer;
     stamina_count++;
 }
