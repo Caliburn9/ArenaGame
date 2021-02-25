@@ -53,6 +53,11 @@ maxstamina = stamina;
 dmg = playerStat[me, DAMAGE];
 spd = playerStat[me, SPEED];
 atk_spd = playerStat[me, ATK_SPEED];
+
+
+//Score stats
+global.kills = 0;
+global.killsthiszone = 0;
 </string>
           </argument>
         </arguments>
@@ -78,6 +83,7 @@ atk_spd = playerStat[me, ATK_SPEED];
             <string>///Draw the stats
 draw_text(32, 16, "HEALTH: " + string(hp) + "/" + string(maxhp));
 draw_text(32, 32, "STAMINA: " + string(stamina) + "/" + string(maxstamina));
+draw_text(32, 48, "SCORE: " + string(global.kills));
 </string>
           </argument>
         </arguments>

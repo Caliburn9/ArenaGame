@@ -113,7 +113,7 @@ if (state == scr_damaged_state) {
             <string>///Step
 spd = o_player_stats.spd;
 if (o_player_stats.hp &lt;= 0) {
-    room_restart();
+    instance_destroy();
 }
 
 depth -= y;

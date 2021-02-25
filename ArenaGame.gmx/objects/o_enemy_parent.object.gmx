@@ -35,6 +35,7 @@ sight = 40;
 invul = false;
 xaxis = 0;
 yaxis = 0;
+tar = 0;
 </string>
           </argument>
         </arguments>
@@ -137,8 +138,21 @@ if (state == scr_collision_between_enemy) {
 depth -= y;
 script_execute(state);
 
+if (instance_exists(o_a)) {
+    tar = o_a;
+} else if (instance_exists(o_b)) {
+    tar = o_b;
+} else if (instance_exists(o_c)) {
+    tar = o_c;
+} 
+
 if (hp &lt;= 0) {
     instance_destroy();
+    
+    if (instance_exists(tar)) {
+        global.kills++;
+        global.killsthiszone++;
+    }
 }
 </string>
           </argument>
