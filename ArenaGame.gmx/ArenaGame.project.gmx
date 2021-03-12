@@ -90,6 +90,7 @@
       <object>objects\o_boss_spawn_point</object>
       <object>objects\o_player_stats</object>
       <object>objects\o_stamina_spawner</object>
+      <object>objects\o_score_multiplier</object>
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_enemy</object>

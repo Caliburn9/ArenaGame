@@ -41,6 +41,40 @@ tar = 0;
         </arguments>
       </action>
     </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Calculate score
+if (instance_exists(o_score_multiplier)) {
+    global.kill_count++;
+    global.kills += (1 * (1 + global.kill_count));
+    global.killsthiszone = global.kills;
+} else {
+    if (instance_exists(tar)) {
+        instance_create(room_width/2, room_height/2, o_score_multiplier);
+    }
+    global.kills++;
+    global.killsthiszone = global.kills;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="2">
       <action>
         <libid>1</libid>
@@ -148,11 +182,6 @@ if (instance_exists(o_a)) {
 
 if (hp &lt;= 0) {
     instance_destroy();
-    
-    if (instance_exists(tar)) {
-        global.kills++;
-        global.killsthiszone++;
-    }
 }
 </string>
           </argument>
