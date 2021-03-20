@@ -91,6 +91,7 @@
       <object>objects\o_player_stats</object>
       <object>objects\o_stamina_spawner</object>
       <object>objects\o_score_multiplier</object>
+      <object>objects\o_highscore</object>
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_enemy</object>
@@ -103,6 +104,7 @@
   <rooms name="rooms">
     <room>rooms\rm_test_menu</room>
     <room>rooms\rm_test_room</room>
+    <room>rooms\rm_test_gameover</room>
   </rooms>
   <constants number="24">
     <constant name="WARRIOR">0</constant>

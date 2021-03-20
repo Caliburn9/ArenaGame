@@ -36,6 +36,8 @@ state = scr_move_state;
 face = RIGHT;
 movement = MOVE;
 attacked = false;
+
+
 </string>
           </argument>
         </arguments>
@@ -113,7 +115,12 @@ if (state == scr_damaged_state) {
             <string>///Step
 spd = o_player_stats.spd;
 if (o_player_stats.hp &lt;= 0) {
-    instance_destroy();
+    instance_destroy();   
+    
+    with(o_player_stats) {
+        //Death timer 
+        alarm[2] = room_speed;
+    }
 }
 
 depth -= y;

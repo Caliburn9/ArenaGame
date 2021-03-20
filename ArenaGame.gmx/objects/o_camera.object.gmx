@@ -103,20 +103,23 @@ if (instance_exists(o_a)) {
     target = o_c;
 } 
 
-//Clamp player location, while also staying within the room
-var _x = clamp(target.x - view_width / 2, 0, room_width - view_width);
-var _y = clamp(target.y - view_height / 2, 0, room_height - view_height);
+if (instance_exists(target)) {
+    //Clamp player location, while also staying within the room
+    var _x = clamp(target.x - view_width / 2, 0, room_width - view_width);
+    var _y = clamp(target.y - view_height / 2, 0, room_height - view_height);
     
-//Variables for current location of view
-var cur_x = view_xview;
-var cur_y = view_yview;
-    
-//Speed variable for lerping location
-var spd = .1;
-    
-//Update view location with lerp 
-view_xview = lerp(cur_x, _x, spd);
-view_yview = lerp(cur_y, _y, spd);
+    //Variables for current location of view
+    var cur_x = view_xview;
+    var cur_y = view_yview;
+        
+    //Speed variable for lerping location
+    var spd = .1;
+        
+    //Update view location with lerp 
+    view_xview = lerp(cur_x, _x, spd);
+    view_yview = lerp(cur_y, _y, spd);
+}
+
 
 
 </string>

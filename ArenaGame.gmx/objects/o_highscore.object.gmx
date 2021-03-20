@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,73 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize player stats
-//~Dynamic stats~
-//Warrior stats
-playerStat[WARRIOR, HEALTH] = 7;
-playerStat[WARRIOR, DAMAGE] = 2;
-playerStat[WARRIOR, SPEED] = 1.5;
-playerStat[WARRIOR, ATK_SPEED] = .75;
-
-//Archer stats
-playerStat[ARCHER, HEALTH] = 6;
-playerStat[ARCHER, DAMAGE] = .5;
-playerStat[ARCHER, SPEED] = 4;
-playerStat[ARCHER, ATK_SPEED] = .25;
-
-//Mage stats
-playerStat[MAGE, HEALTH] = 5;
-playerStat[MAGE, DAMAGE] = 1;
-playerStat[MAGE, SPEED] = 2;
-playerStat[MAGE, ATK_SPEED] = .5;
-
-//~Static Stats~
-hp = playerStat[me, HEALTH];
-maxhp = hp;
-stamina = 10;
-maxstamina = stamina;
-dmg = playerStat[me, DAMAGE];
-spd = playerStat[me, SPEED];
-atk_spd = playerStat[me, ATK_SPEED];
-
-
-//Score stats
-global.kills = 0;
-global.killsthiszone = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Death of player
-//Update scores
+            <string>///Get score values
 ini_open("save.ini");
-ini_write_real("Scores", "Score", global.kills);
-var highscore = ini_read_real("Score", "HighScore", 0);
-if (global.kills &gt; highscore) {
-    ini_write_real("Scores", "HighScore", global.kills);
-}
+_score = ini_read_real("Scores", "Score", 0);
+_highscore = ini_read_real("Scores", "HighScore", 0);
 ini_close();
-
-//Go to score room
-room_goto(rm_test_gameover);
 </string>
           </argument>
         </arguments>
@@ -114,17 +52,11 @@ room_goto(rm_test_gameover);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw the stats
-if (room = rm_test_room) {
-    draw_text(32, 16, "HEALTH: " + string(hp) + "/" + string(maxhp));
-    draw_text(32, 32, "STAMINA: " + string(stamina) + "/" + string(maxstamina));
-    draw_text(32, 48, "SCORE: " + string(global.kills));
-    if (instance_exists(o_score_multiplier)) {
-       draw_text(32, 64, "MULTIPLIER: " + string(global.kill_count)); 
-    } else {
-       draw_text(32, 64, "MULTIPLIER: 0");  
-    }
-}
+            <string>///Display score
+draw_set_halign(fa_center);
+
+draw_text(room_width/2, room_height/6, "Score" + string(_score));
+draw_text(room_width/2, room_height/6+16, "High Score" + string(_highscore));
 </string>
           </argument>
         </arguments>
