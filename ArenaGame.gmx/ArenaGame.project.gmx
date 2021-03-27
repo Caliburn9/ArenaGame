@@ -104,6 +104,7 @@
   <rooms name="rooms">
     <room>rooms\rm_test_menu</room>
     <room>rooms\rm_test_room</room>
+    <room>rooms\rm_test_room2</room>
     <room>rooms\rm_test_gameover</room>
   </rooms>
   <constants number="24">
