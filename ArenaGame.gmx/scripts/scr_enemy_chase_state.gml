@@ -4,10 +4,10 @@ var dir = point_direction(0, 0, xaxis, yaxis);
 var hspd = lengthdir_x(spd, dir);
 var vspd = lengthdir_y(spd, dir);
 
-//##Change direction to face player
-//if (hspd != 0) {
-//   image_xscale = sign(hspd);
-//}
+//Change direction to face player
+if (hspd != 0) {
+  image_xscale = sign(hspd);
+}
 
 // Horizontal collisions
 if (place_meeting(x+hspd, y, o_solid))

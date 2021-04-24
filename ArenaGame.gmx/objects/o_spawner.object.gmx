@@ -97,12 +97,12 @@ b = instance_exists(boss_type);
 
 if (cur_wave == ENEM_WAVE) {
     if (!e and spawned == false) {
-        if (enem_per_spawner &lt; max_wave) {
+        if (enem_per_spawner &lt; max_wave) {   
             repeat(enem_per_spawner) {
                 with(o_spawn_point) {
                     instance_create(x, y, enem_type);
                 }
-            }       
+            }     
         }   
     wave += 1;
     enem_per_spawner += 1;

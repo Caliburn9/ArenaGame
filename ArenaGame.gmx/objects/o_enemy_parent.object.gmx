@@ -26,16 +26,55 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize the enemy
-hp = 2;
-damage = 1;
 knockback = 0;
-spd = 1;
 state = scr_enemy_chase_state;
 sight = 40;
 invul = false;
 xaxis = 0;
 yaxis = 0;
 tar = 0;
+
+//Initialize stats
+//Goblin stats
+enemyStat[GOBLIN, HEALTH] = 2;
+enemyStat[GOBLIN, DAMAGE] = 1;
+enemyStat[GOBLIN, SPEED] = 1.5;
+enemyStat[GOBLIN, ATK_SPEED] = .25;
+
+//Draugr Stats
+enemyStat[DRAUGR, HEALTH] = 4;
+enemyStat[DRAUGR, DAMAGE] = 2;
+enemyStat[DRAUGR, SPEED] = .75;
+enemyStat[DRAUGR, ATK_SPEED] = .75;
+
+//Demon Knight Stats
+enemyStat[DEMONKNIGHT, HEALTH] = 6;
+enemyStat[DEMONKNIGHT, DAMAGE] = 3;
+enemyStat[DEMONKNIGHT, SPEED] = .5;
+enemyStat[DEMONKNIGHT, ATK_SPEED] = 1;
+
+//Enemy check and stats
+if (room = rm_test_room) {
+    _enemy = GOBLIN;
+    hp = enemyStat[_enemy, HEALTH];
+    dmg = enemyStat[_enemy, DAMAGE];
+    spd = enemyStat[_enemy, SPEED];
+    atk_spd = enemyStat[_enemy, ATK_SPEED];
+} else if (room = rm_test_room2) {
+    _enemy = DRAUGR;
+    hp = enemyStat[_enemy, HEALTH];
+    dmg = enemyStat[_enemy, DAMAGE];
+    spd = enemyStat[_enemy, SPEED];
+    atk_spd = enemyStat[_enemy, ATK_SPEED];
+}
+/*
+}  else if (room = rm_test_room3) {
+    _enemy = DEMONKNIGHT;
+    hp = enemyStat[_enemy, HEALTH];
+    dmg = enemyStat[_enemy, DAMAGE];
+    spd = enemyStat[_enemy, SPEED];
+    atk_spd = enemyStat[_enemy, ATK_SPEED];
+}
 </string>
           </argument>
         </arguments>

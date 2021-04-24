@@ -7,4 +7,4 @@ var damage = instance_create(other.x+xdir, other.y+ydir, o_damage);
 damage.creator = id;
 damage.knockback = 20;
 state = scr_enemy_stall_state;
-alarm[2] = 2;
+alarm[2] = atk_spd;
