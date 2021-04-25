@@ -36,21 +36,21 @@ tar = 0;
 
 //Initialize stats
 //Goblin stats
-enemyStat[GOBLIN, HEALTH] = 2;
+enemyStat[GOBLIN, HEALTH] = 4;
 enemyStat[GOBLIN, DAMAGE] = 1;
-enemyStat[GOBLIN, SPEED] = 1.5;
+enemyStat[GOBLIN, SPEED] = .75;
 enemyStat[GOBLIN, ATK_SPEED] = .25;
 
 //Draugr Stats
-enemyStat[DRAUGR, HEALTH] = 4;
+enemyStat[DRAUGR, HEALTH] = 8;
 enemyStat[DRAUGR, DAMAGE] = 2;
-enemyStat[DRAUGR, SPEED] = .75;
+enemyStat[DRAUGR, SPEED] = .5;
 enemyStat[DRAUGR, ATK_SPEED] = .75;
 
 //Demon Knight Stats
-enemyStat[DEMONKNIGHT, HEALTH] = 6;
+enemyStat[DEMONKNIGHT, HEALTH] = 10;
 enemyStat[DEMONKNIGHT, DAMAGE] = 3;
-enemyStat[DEMONKNIGHT, SPEED] = .5;
+enemyStat[DEMONKNIGHT, SPEED] = .25;
 enemyStat[DEMONKNIGHT, ATK_SPEED] = 1;
 
 //Enemy check and stats
@@ -102,10 +102,14 @@ if (instance_exists(o_score_multiplier)) {
     global.kill_count++;
     global.kills += (1 * (1 + global.kill_count));
     global.killsthiszone = global.kills;
+    with (o_score_multiplier) {
+        alarm[0] = room_speed*3;
+    }
 } else {
     if (instance_exists(tar)) {
         instance_create(room_width/2, room_height/2, o_score_multiplier);
     }
+    global.kill_count++;
     global.kills++;
     global.killsthiszone = global.kills;
 }

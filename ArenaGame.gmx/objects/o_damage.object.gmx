@@ -83,7 +83,7 @@ hit = false;
             <string>///Damage enemy
 if (other.id != creator and hit == false and other.invul == false) {
     //Create damage variable and reduce health
-    o_enemy_parent.hp -= dmg_;
+    other.hp -= dmg_;
     other.invul = true;
     
     hit = true;
