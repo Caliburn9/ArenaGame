@@ -2,7 +2,6 @@
 scr_get_input();
 movement = MOVE;
 
-
 //Attack
 if (attack_key and attacked == false and o_player_stats.stamina >= STAMINA_COST) {
     var stats = o_player_stats;

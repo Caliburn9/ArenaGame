@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Create hitbox object
 creator = noone;
-knockback = 10;
+knockback = 0;
 hit = false;
 dmg_ = 0;
 
@@ -58,6 +58,54 @@ alarm[0] = 1;
             <string>///Destroy self shortly after creation
 instance_destroy();
 hit = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="o_boss_parent">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Damage boss
+if (other.id != creator and hit == false and other.invul == false) {
+    //Create damage variable and reduce health
+    other.hp -= dmg_;
+    other.invul = true;
+    
+    hit = true;
+    
+    //Apply knockback
+    if (instance_exists(creator)) {
+        var dir = point_direction(creator.x, creator.y, other.x, other.y);
+    } else {
+        var dir = point_direction(x, y, other.x, other.y);
+    }
+    
+    knockback = o_player_stats.knockback;
+    
+    var xforce = lengthdir_x(knockback, dir);
+    var yforce = lengthdir_y(knockback, dir);
+    
+    with(other) {
+        state = scr_boss_damaged_state;
+        scr_boss_damaged_state(xforce, yforce, _friction);
+        alarm[1] = 5;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -95,6 +143,8 @@ if (other.id != creator and hit == false and other.invul == false) {
         var dir = point_direction(x, y, other.x, other.y);
     }
     
+    knockback = o_player_stats.knockback;
+    
     var xforce = lengthdir_x(knockback, dir);
     var yforce = lengthdir_y(knockback, dir);
     
@@ -129,7 +179,7 @@ if (other.id != creator and hit == false and other.invul == false) {
             <string>///Damage player
 if (other.id != creator and hit == false) {
     //Create damage variable and reduce health
-    o_player_stats.hp -= o_enemy_parent.dmg; 
+    o_player_stats.hp -= creator.dmg; 
     
     hit = true
     
@@ -139,6 +189,8 @@ if (other.id != creator and hit == false) {
     } else {
         var dir = point_direction(x, y, other.x, other.y);
     }
+    
+    knockback = creator.knockback;
     
     var xforce = lengthdir_x(knockback, dir);
     var yforce = lengthdir_y(knockback, dir);

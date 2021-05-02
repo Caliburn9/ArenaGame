@@ -26,13 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize the enemy
-knockback = 0;
 state = scr_enemy_chase_state;
-sight = 40;
 invul = false;
 xaxis = 0;
 yaxis = 0;
-tar = 0;
+plr_obj = 0;
 
 //Initialize stats
 //Goblin stats
@@ -40,18 +38,21 @@ enemyStat[GOBLIN, HEALTH] = 4;
 enemyStat[GOBLIN, DAMAGE] = 1;
 enemyStat[GOBLIN, SPEED] = .75;
 enemyStat[GOBLIN, ATK_SPEED] = .25;
+enemyStat[GOBLIN, KNOCKBACK] = 7;
 
 //Draugr Stats
 enemyStat[DRAUGR, HEALTH] = 8;
 enemyStat[DRAUGR, DAMAGE] = 2;
 enemyStat[DRAUGR, SPEED] = .5;
 enemyStat[DRAUGR, ATK_SPEED] = .75;
+enemyStat[DRAUGR, KNOCKBACK] = 9;
 
 //Demon Knight Stats
 enemyStat[DEMONKNIGHT, HEALTH] = 10;
 enemyStat[DEMONKNIGHT, DAMAGE] = 3;
 enemyStat[DEMONKNIGHT, SPEED] = .25;
 enemyStat[DEMONKNIGHT, ATK_SPEED] = 1;
+enemyStat[DEMONKNIGHT, KNOCKBACK] = 10;
 
 //Enemy check and stats
 if (room = rm_test_room) {
@@ -60,12 +61,14 @@ if (room = rm_test_room) {
     dmg = enemyStat[_enemy, DAMAGE];
     spd = enemyStat[_enemy, SPEED];
     atk_spd = enemyStat[_enemy, ATK_SPEED];
+    knockback = enemyStat[_enemy, KNOCKBACK];
 } else if (room = rm_test_room2) {
     _enemy = DRAUGR;
     hp = enemyStat[_enemy, HEALTH];
     dmg = enemyStat[_enemy, DAMAGE];
     spd = enemyStat[_enemy, SPEED];
     atk_spd = enemyStat[_enemy, ATK_SPEED];
+    knockback = enemyStat[_enemy, KNOCKBACK];
 }
 /*
 }  else if (room = rm_test_room3) {
@@ -74,6 +77,7 @@ if (room = rm_test_room) {
     dmg = enemyStat[_enemy, DAMAGE];
     spd = enemyStat[_enemy, SPEED];
     atk_spd = enemyStat[_enemy, ATK_SPEED];
+    knockback = enemyStat[_enemy, KNOCKBACK];
 }
 </string>
           </argument>
@@ -106,7 +110,7 @@ if (instance_exists(o_score_multiplier)) {
         alarm[0] = room_speed*3;
     }
 } else {
-    if (instance_exists(tar)) {
+    if (instance_exists(plr_obj)) {
         instance_create(room_width/2, room_height/2, o_score_multiplier);
     }
     global.kill_count++;
@@ -216,11 +220,11 @@ depth -= y;
 script_execute(state);
 
 if (instance_exists(o_a)) {
-    tar = o_a;
+    plr_obj = o_a;
 } else if (instance_exists(o_b)) {
-    tar = o_b;
+    plr_obj = o_b;
 } else if (instance_exists(o_c)) {
-    tar = o_c;
+    plr_obj = o_c;
 } 
 
 if (hp &lt;= 0) {

@@ -25,51 +25,67 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialise player 
-globalvar me;
-image_speed = 0;
-hspd = 0;
-vspd = 0;
-len = 0;
-dir = 0;
-state = scr_move_state;
-face = RIGHT;
-movement = MOVE;
-attacked = false;
+            <string>///Initialize boss 
+invul = false;
+xaxis = 0;
+yaxis = 0;
+_friction = 0;
+state = scr_check_for_player;
+plr_obj = 0;
 
+//Initialize stats
+//Mauler stats
+bossStat[MAULER, HEALTH] = 10;
+bossStat[MAULER, DAMAGE] = 2;
+bossStat[MAULER, SPEED] = .3;
+bossStat[MAULER, ATK_SPEED] = .6;
+bossStat[MAULER, KNOCKBACK] = 15;
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Set "attacked" back to false
-if (attacked == true) {
-    attacked = false;
+//Lich King Stats
+bossStat[LICH, HEALTH] = 15;
+bossStat[LICH, DAMAGE] = 3;
+bossStat[LICH, SPEED] = .5;
+bossStat[LICH, ATK_SPEED] = .45;
+bossStat[LICH, KNOCKBACK] = 16;
+
+//Goetia Stats
+bossStat[GOETIA, HEALTH] = 25;
+bossStat[GOETIA, DAMAGE] = 4;
+bossStat[GOETIA, SPEED] = .25;
+bossStat[GOETIA, ATK_SPEED] = .6;
+bossStat[GOETIA, KNOCKBACK] = 17;
+
+//Enemy check and stats
+if (room = rm_test_room) {
+    _boss = MAULER;
+    hp = bossStat[_boss, HEALTH];
+    dmg = bossStat[_boss, DAMAGE];
+    spd = bossStat[_boss, SPEED];
+    atk_spd = bossStat[_boss, ATK_SPEED];
+    knockback = bossStat[_boss, KNOCKBACK];
+} else if (room = rm_test_room2) {
+    _enemy = LICH;
+    hp = bossStat[_boss, HEALTH];
+    dmg = bossStat[_boss, DAMAGE];
+    spd = bossStat[_boss, SPEED];
+    atk_spd = bossStat[_boss, ATK_SPEED];
+    knockback = bossStat[_boss, KNOCKBACK];
+}
+/*
+}  else if (room = rm_test_room3) {
+    _boss = GOETIA;
+    hp = bossStat[_boss, HEALTH];
+    dmg = bossStat[_boss, DAMAGE];
+    spd = bossStat[_boss, SPEED];
+    atk_spd = bossStat[_boss, ATK_SPEED];
+    knockback = bossStat[_boss, KNOCKBACK];
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -86,9 +102,18 @@ if (attacked == true) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set state from "damaged" back to "move"
-if (state == scr_damaged_state) {
-    state = scr_move_state;
+            <string>///Calculate score
+if (instance_exists(o_score_multiplier)) {
+    global.kill_count++;
+    global.kills += (5 * (1 + global.kill_count));
+    global.killsthiszone = global.kills;
+    with (o_score_multiplier) {
+        alarm[0] = room_speed*3;
+    }
+} else {
+    global.kill_count++;
+    global.kills += 5;
+    global.killsthiszone = global.kills;
 }
 </string>
           </argument>
@@ -113,48 +138,11 @@ if (state == scr_damaged_state) {
           <argument>
             <kind>1</kind>
             <string>///Step
-spd = o_player_stats.spd;
-
-if (o_player_stats.hp &lt;= 0) {
-    instance_destroy();   
-    
-    with(o_player_stats) {
-        //Death timer 
-        alarm[2] = room_speed;
-    }
-}
-
 depth -= y;
+script_execute(state);
 
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="o_stamina">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Regenerate stamina
-if (o_player_stats.stamina &lt; o_player_stats.maxstamina) {
-    with (other) {
-        instance_destroy();
-    }
-    o_player_stats.stamina++;
+if (hp &lt;= 0) {
+    instance_destroy();
 }
 </string>
           </argument>

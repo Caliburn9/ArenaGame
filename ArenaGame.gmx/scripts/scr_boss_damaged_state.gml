@@ -1,13 +1,8 @@
-///scr_enemy_chase_state()
-scr_check_for_player();
-var dir = point_direction(0, 0, xaxis, yaxis);
-var hspd = lengthdir_x(spd, dir);
-var vspd = lengthdir_y(spd, dir);
-
-//Change direction to face player
-if (hspd != 0) {
-  image_xscale = sign(hspd);
-}
+///scr_boss_damaged_state(xforce, yforce, friction)
+var dir = point_direction(x, y, other.x, other.y)
+var hspd = argument0;
+var vspd = argument1;
+var _friction = argument2;
 
 // Horizontal collisions
 if (place_meeting(x+hspd, y, o_solid))
@@ -20,7 +15,7 @@ if (place_meeting(x+hspd, y, o_solid))
 }
 
 // Move horizontally
-x += hspd;
+x += floor(hspd - _friction);
 
 // Vertical collisions
 if (place_meeting(x, y+vspd, o_solid))
@@ -33,4 +28,4 @@ if (place_meeting(x, y+vspd, o_solid))
 }
 
 // Move vertically
-y += vspd;
+y += floor(hspd - _friction);
