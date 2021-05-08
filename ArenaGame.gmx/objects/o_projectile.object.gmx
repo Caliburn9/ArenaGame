@@ -180,7 +180,7 @@ if (other.id != creator and hit == false and other.invul == false) {
             <string>///Damage player
 if (other.id != creator and hit == false) {
     //Create damage variable and reduce health
-    o_player_stats.hp -= o_enemy_parent.dmg; 
+    o_player_stats.hp -= creator.dmg; 
     
     hit = true
     

@@ -25,10 +25,44 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize enemy
+            <string>///Initialize Lich king boss
 event_inherited();
-sight = 128;
-var tar;
+_friction = 2;
+state = scr_enemy_chase_state;
+sight = 64;
+plr = 0;
+var dis = 0;
+b_attacked = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Score (inherited) and room change
+event_inherited(); 
+
+//Move to next room
+//Change room check based on boss
+if (room_exists(rm_test_room3) and room_next(rm_test_room3)) {
+    room_goto(rm_test_room3);
+}
 </string>
           </argument>
         </arguments>
@@ -74,7 +108,11 @@ var tar;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///Set state from "damaged" back to "check for player"
+if (state == scr_boss_damaged_state and invul == true) {
+    state = scr_check_for_player;
+    invul = false;
+}
 </string>
           </argument>
         </arguments>
@@ -97,7 +135,10 @@ var tar;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///Set b_attacked from false to true
+if (b_attacked == true) {
+    b_attacked = false;
+}
 </string>
           </argument>
         </arguments>
@@ -120,27 +161,30 @@ var tar;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Step
+            <string>///Step event
 event_inherited();
 
+//Check for distance to player and attack if they are close
 if (instance_exists(o_a)) {
-    tar = o_a;
+    plr = o_a;
+    dis = point_distance(x, y, plr.x, plr.y);
 } else if (instance_exists(o_b)) {
-    tar = o_b;
-} else if (instance_exists(o_c)) {
-    tar = o_c;
-}
+    plr = o_b;
+    dis = point_distance(x, y, plr.x, plr.y);
+}  else if (instance_exists(o_c)) {
+    plr = o_c;
+    dis = point_distance(x, y, plr.x, plr.y);
+} 
 
-var dis = point_distance(tar.x, tar.y, x, y);
-if (dis &lt;= sight) {
-    state = scr_attack_state;
+if (dis &lt; sight and state != scr_enemy_stall_state and invul == false) {
+    state = scr_boss2_attack_state;
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="o_enemy_parent">
+    <event eventtype="4" ename="o_player_parent">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -157,7 +201,10 @@ if (dis &lt;= sight) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///Attack the player
+if (state != scr_enemy_stall_state and invul == false) {
+    state = scr_boss1_attack_state;
+}
 </string>
           </argument>
         </arguments>

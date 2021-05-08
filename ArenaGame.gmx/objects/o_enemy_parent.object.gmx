@@ -55,23 +55,21 @@ enemyStat[DEMONKNIGHT, ATK_SPEED] = 1;
 enemyStat[DEMONKNIGHT, KNOCKBACK] = 10;
 
 //Enemy check and stats
-if (room = rm_test_room) {
+if (room == rm_test_room) {
     _enemy = GOBLIN;
     hp = enemyStat[_enemy, HEALTH];
     dmg = enemyStat[_enemy, DAMAGE];
     spd = enemyStat[_enemy, SPEED];
     atk_spd = enemyStat[_enemy, ATK_SPEED];
     knockback = enemyStat[_enemy, KNOCKBACK];
-} else if (room = rm_test_room2) {
+} else if (room == rm_test_room2) {
     _enemy = DRAUGR;
     hp = enemyStat[_enemy, HEALTH];
     dmg = enemyStat[_enemy, DAMAGE];
     spd = enemyStat[_enemy, SPEED];
     atk_spd = enemyStat[_enemy, ATK_SPEED];
     knockback = enemyStat[_enemy, KNOCKBACK];
-}
-/*
-}  else if (room = rm_test_room3) {
+}  else if (room == rm_test_room3) {
     _enemy = DEMONKNIGHT;
     hp = enemyStat[_enemy, HEALTH];
     dmg = enemyStat[_enemy, DAMAGE];

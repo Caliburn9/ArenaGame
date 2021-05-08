@@ -31,20 +31,19 @@ xaxis = 0;
 yaxis = 0;
 _friction = 0;
 state = scr_check_for_player;
-plr_obj = 0;
 
 //Initialize stats
 //Mauler stats
 bossStat[MAULER, HEALTH] = 10;
 bossStat[MAULER, DAMAGE] = 2;
-bossStat[MAULER, SPEED] = .3;
+bossStat[MAULER, SPEED] = .5;
 bossStat[MAULER, ATK_SPEED] = .6;
 bossStat[MAULER, KNOCKBACK] = 15;
 
 //Lich King Stats
 bossStat[LICH, HEALTH] = 15;
 bossStat[LICH, DAMAGE] = 3;
-bossStat[LICH, SPEED] = .5;
+bossStat[LICH, SPEED] = .7;
 bossStat[LICH, ATK_SPEED] = .45;
 bossStat[LICH, KNOCKBACK] = 16;
 
@@ -56,23 +55,21 @@ bossStat[GOETIA, ATK_SPEED] = .6;
 bossStat[GOETIA, KNOCKBACK] = 17;
 
 //Enemy check and stats
-if (room = rm_test_room) {
+if (room == rm_test_room) {
     _boss = MAULER;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
     spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
-} else if (room = rm_test_room2) {
-    _enemy = LICH;
+} else if (room == rm_test_room2) {
+    _boss = LICH;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
     spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
-}
-/*
-}  else if (room = rm_test_room3) {
+}  else if (room == rm_test_room3) {
     _boss = GOETIA;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];

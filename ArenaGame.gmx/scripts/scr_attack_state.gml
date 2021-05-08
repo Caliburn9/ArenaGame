@@ -37,7 +37,7 @@ if (me == WARRIOR and attacked == false) {
     attacked = true;
                  
 } else if (me == ARCHER and attacked == false) {
-    if (!instance_exists(o_projectile)) {
+    //if (!instance_exists(o_projectile)) { <- Bug fix this later
         var projectile = instance_create(xx, yy, o_projectile);
         projectile.creator = id;
         
@@ -48,11 +48,11 @@ if (me == WARRIOR and attacked == false) {
         image_angle = shoot_dir;   
         projectile.dmg_ = o_player_stats.dmg;
     }
-    }
+    //}
     attacked = true;
         
 } else if (me == MAGE and attacked == false) {
-    if (!instance_exists(o_projectile)) {
+    //if (!instance_exists(o_projectile)) { <- Bug fix this later
         var projectile = instance_create(xx, yy, o_projectile);
         projectile.creator = id;
         
@@ -63,7 +63,7 @@ if (me == WARRIOR and attacked == false) {
         image_angle = shoot_dir; 
         projectile.dmg_ = o_player_stats.dmg;  
     }
-    }
+    //}
     attacked = true;  
 }
 
