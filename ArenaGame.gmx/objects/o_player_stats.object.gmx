@@ -29,21 +29,21 @@
 //~Dynamic stats~
 //Warrior stats
 playerStat[WARRIOR, HEALTH] = 7;
-playerStat[WARRIOR, DAMAGE] = 2;
+playerStat[WARRIOR, DAMAGE] = 3; 
 playerStat[WARRIOR, SPEED] = 1.5;
 playerStat[WARRIOR, ATK_SPEED] = .75;
 playerStat[WARRIOR, KNOCKBACK] = 10;
 
 //Archer stats
 playerStat[ARCHER, HEALTH] = 6;
-playerStat[ARCHER, DAMAGE] = .5;
+playerStat[ARCHER, DAMAGE] = 1;
 playerStat[ARCHER, SPEED] = 4;
 playerStat[ARCHER, ATK_SPEED] = .25;
 playerStat[ARCHER, KNOCKBACK] = 8;
 
 //Mage stats
 playerStat[MAGE, HEALTH] = 5;
-playerStat[MAGE, DAMAGE] = 1;
+playerStat[MAGE, DAMAGE] = 2;
 playerStat[MAGE, SPEED] = 2;
 playerStat[MAGE, ATK_SPEED] = .5;
 playerStat[MAGE, KNOCKBACK] = 13;
@@ -51,7 +51,7 @@ playerStat[MAGE, KNOCKBACK] = 13;
 //~Static Stats~
 hp = playerStat[me, HEALTH];
 maxhp = hp;
-stamina = 10;
+stamina = 15;
 maxstamina = stamina;
 dmg = playerStat[me, DAMAGE];
 spd = playerStat[me, SPEED];
@@ -121,8 +121,10 @@ room_goto(rm_test_gameover);
           <argument>
             <kind>1</kind>
             <string>///Regen stamina once alarm goes off
-if (stamina &lt;= maxstamina) {
+if (stamina &lt; maxstamina) {
     stamina++;
+    alarm[0] = room_speed*10;
+} else if (stamina == maxstamina) {
     alarm[0] = room_speed*10;
 }
 </string>

@@ -29,28 +29,27 @@
 invul = false;
 xaxis = 0;
 yaxis = 0;
-_friction = 0;
-state = scr_check_for_player;
+state = -1;
 
 //Initialize stats
 //Mauler stats
-bossStat[MAULER, HEALTH] = 10;
+bossStat[MAULER, HEALTH] = 12;
 bossStat[MAULER, DAMAGE] = 2;
-bossStat[MAULER, SPEED] = .5;
+    //bossStat[MAULER, SPEED] = .5;
 bossStat[MAULER, ATK_SPEED] = .6;
 bossStat[MAULER, KNOCKBACK] = 15;
 
 //Lich King Stats
-bossStat[LICH, HEALTH] = 15;
+bossStat[LICH, HEALTH] = 16;
 bossStat[LICH, DAMAGE] = 3;
-bossStat[LICH, SPEED] = .7;
+    //bossStat[LICH, SPEED] = .7;
 bossStat[LICH, ATK_SPEED] = .45;
 bossStat[LICH, KNOCKBACK] = 16;
 
 //Goetia Stats
 bossStat[GOETIA, HEALTH] = 25;
 bossStat[GOETIA, DAMAGE] = 4;
-bossStat[GOETIA, SPEED] = .25;
+    //bossStat[GOETIA, SPEED] = .25;
 bossStat[GOETIA, ATK_SPEED] = .6;
 bossStat[GOETIA, KNOCKBACK] = 17;
 
@@ -59,21 +58,21 @@ if (room == rm_test_room) {
     _boss = MAULER;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
-    spd = bossStat[_boss, SPEED];
+        //spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
 } else if (room == rm_test_room2) {
     _boss = LICH;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
-    spd = bossStat[_boss, SPEED];
+        //spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
 }  else if (room == rm_test_room3) {
     _boss = GOETIA;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
-    spd = bossStat[_boss, SPEED];
+        //spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
 }
@@ -112,6 +111,11 @@ if (instance_exists(o_score_multiplier)) {
     global.kills += 5;
     global.killsthiszone = global.kills;
 }
+
+with (o_player_stats) {
+    hp = maxhp;
+    stamina = maxstamina;
+}
 </string>
           </argument>
         </arguments>
@@ -136,7 +140,10 @@ if (instance_exists(o_score_multiplier)) {
             <kind>1</kind>
             <string>///Step
 depth -= y;
-script_execute(state);
+
+if (state != -1) {
+    script_execute(state);
+}
 
 if (hp &lt;= 0) {
     instance_destroy();

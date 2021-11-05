@@ -1,5 +1,4 @@
 ///scr_damaged_state(xforce, yforce)
-var dir = point_direction(x, y, other.x, other.y)
 var hspd = argument0;
 var vspd = argument1;
 

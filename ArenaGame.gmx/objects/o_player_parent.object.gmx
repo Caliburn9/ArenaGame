@@ -150,11 +150,12 @@ depth -= y;
           <argument>
             <kind>1</kind>
             <string>///Regenerate stamina
-if (o_player_stats.stamina &lt; o_player_stats.maxstamina) {
+var stats = o_player_stats;
+if (stats.stamina &lt; stats.maxstamina) {
     with (other) {
         instance_destroy();
     }
-    o_player_stats.stamina++;
+    stats.stamina++;
 }
 </string>
           </argument>

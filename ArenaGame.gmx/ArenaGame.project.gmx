@@ -76,9 +76,8 @@
       <script>scripts\scr_collision_between_enemy.gml</script>
     </scripts>
     <scripts name="Boss Scripts">
-      <script>scripts\scr_boss_damaged_state.gml</script>
+      <script>scripts\scr_locate_player_state.gml</script>
       <script>scripts\scr_boss1_attack_state.gml</script>
-      <script>scripts\scr_boss2_attack_state.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -109,12 +108,12 @@
     </objects>
     <objects name="Boss">
       <object>objects\o_boss1</object>
-      <object>objects\o_boss2</object>
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_damage</object>
     <object>objects\o_projectile</object>
     <object>objects\o_stamina</object>
+    <object>objects\chaser</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test_menu</room>

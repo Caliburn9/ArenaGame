@@ -99,6 +99,10 @@ if (alarm[0] == 0 and stamina_count &lt; max_stamina_count) {
         stamina_count++;    
     }
 }
+
+if (stamina_count &gt;= max_stamina_count) {
+    stamina_count = 0;
+} 
 </string>
           </argument>
         </arguments>

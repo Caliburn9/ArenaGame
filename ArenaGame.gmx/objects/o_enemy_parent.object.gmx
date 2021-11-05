@@ -34,7 +34,7 @@ plr_obj = 0;
 
 //Initialize stats
 //Goblin stats
-enemyStat[GOBLIN, HEALTH] = 4;
+enemyStat[GOBLIN, HEALTH] = 6;
 enemyStat[GOBLIN, DAMAGE] = 1;
 enemyStat[GOBLIN, SPEED] = .75;
 enemyStat[GOBLIN, ATK_SPEED] = .25;
