@@ -45,7 +45,7 @@
     </sprites>
     <sprites name="Test Boss">
       <sprite>sprites\s_boss_temp</sprite>
-      <sprite>sprites\s_boss_temp_2</sprite>
+      <sprite>sprites\s_boss2_temp</sprite>
     </sprites>
     <sprite>sprites\s_solid</sprite>
     <sprite>sprites\s_hitbox</sprite>
@@ -77,7 +77,12 @@
     </scripts>
     <scripts name="Boss Scripts">
       <script>scripts\scr_locate_player_state.gml</script>
-      <script>scripts\scr_boss1_attack_state.gml</script>
+      <script>scripts\scr_boss_damaged_state.gml</script>
+      <script>scripts\scr_boss1_dash_state.gml</script>
+      <script>scripts\scr_boss1_throw_state.gml</script>
+      <script>scripts\scr_boss2_wait_state.gml</script>
+      <script>scripts\scr_boss2_shoot_state.gml</script>
+      <script>scripts\scr_boss2_chase_state.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -108,12 +113,14 @@
     </objects>
     <objects name="Boss">
       <object>objects\o_boss1</object>
+      <object>objects\o_boss2</object>
     </objects>
     <object>objects\o_solid</object>
     <object>objects\o_damage</object>
+    <object>objects\o_bdamage</object>
     <object>objects\o_projectile</object>
     <object>objects\o_stamina</object>
-    <object>objects\chaser</object>
+    <object>objects\chaser_not_a_game_asset</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test_menu</room>
@@ -122,7 +129,7 @@
     <room>rooms\rm_test_room3</room>
     <room>rooms\rm_test_gameover</room>
   </rooms>
-  <constants number="31">
+  <constants number="35">
     <constant name="WARRIOR">0</constant>
     <constant name="ARCHER">1</constant>
     <constant name="MAGE">2</constant>
@@ -139,7 +146,11 @@
     <constant name="ENEM_ATTACK">1</constant>
     <constant name="ENEM_DAMAGED">2</constant>
     <constant name="ENEM_DEAD">3</constant>
-    <constant name="ENEM_SCATTER">4</constant>
+    <constant name="BOSS1_LOCATE">0</constant>
+    <constant name="BOSS1_DASH">1</constant>
+    <constant name="BOSS1_THROW">2</constant>
+    <constant name="BOSS1_DAMAGED">3</constant>
+    <constant name="BOSS1_DEAD">4</constant>
     <constant name="ENEM_WAVE">0</constant>
     <constant name="BOSS_WAVE">1</constant>
     <constant name="HEALTH">0</constant>

@@ -27,22 +27,21 @@
             <kind>1</kind>
             <string>///Initialize boss 
 invul = false;
-xaxis = 0;
-yaxis = 0;
 state = -1;
+acted = false;
 
 //Initialize stats
 //Mauler stats
 bossStat[MAULER, HEALTH] = 12;
 bossStat[MAULER, DAMAGE] = 2;
-    //bossStat[MAULER, SPEED] = .5;
+bossStat[MAULER, SPEED] = 2;
 bossStat[MAULER, ATK_SPEED] = .6;
 bossStat[MAULER, KNOCKBACK] = 15;
 
 //Lich King Stats
 bossStat[LICH, HEALTH] = 16;
 bossStat[LICH, DAMAGE] = 3;
-    //bossStat[LICH, SPEED] = .7;
+bossStat[LICH, SPEED] = 1.25;
 bossStat[LICH, ATK_SPEED] = .45;
 bossStat[LICH, KNOCKBACK] = 16;
 
@@ -58,14 +57,14 @@ if (room == rm_test_room) {
     _boss = MAULER;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
-        //spd = bossStat[_boss, SPEED];
+    spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
 } else if (room == rm_test_room2) {
     _boss = LICH;
     hp = bossStat[_boss, HEALTH];
     dmg = bossStat[_boss, DAMAGE];
-        //spd = bossStat[_boss, SPEED];
+    spd = bossStat[_boss, SPEED];
     atk_spd = bossStat[_boss, ATK_SPEED];
     knockback = bossStat[_boss, KNOCKBACK];
 }  else if (room == rm_test_room3) {
@@ -98,7 +97,7 @@ if (room == rm_test_room) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Calculate score
+            <string>///Calculate score and reset stats
 if (instance_exists(o_score_multiplier)) {
     global.kill_count++;
     global.kills += (5 * (1 + global.kill_count));
@@ -107,6 +106,9 @@ if (instance_exists(o_score_multiplier)) {
         alarm[0] = room_speed*3;
     }
 } else {
+    if (instance_exists(plr_obj)) {
+        instance_create(room_width/2, room_height/2, o_score_multiplier);
+    }
     global.kill_count++;
     global.kills += 5;
     global.killsthiszone = global.kills;
@@ -115,6 +117,33 @@ if (instance_exists(o_score_multiplier)) {
 with (o_player_stats) {
     hp = maxhp;
     stamina = maxstamina;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set state from "damaged" back to "locate player"
+if (state == scr_boss_damaged_state and invul == true) {
+    state = scr_locate_player_state;
+    invul = false;
 }
 </string>
           </argument>
@@ -141,9 +170,13 @@ with (o_player_stats) {
             <string>///Step
 depth -= y;
 
-if (state != -1) {
-    script_execute(state);
-}
+if (instance_exists(o_a)) {
+    plr_obj = o_a;
+} else if (instance_exists(o_b)) {
+    plr_obj = o_b;
+} else if (instance_exists(o_c)) {
+    plr_obj = o_c;
+} 
 
 if (hp &lt;= 0) {
     instance_destroy();

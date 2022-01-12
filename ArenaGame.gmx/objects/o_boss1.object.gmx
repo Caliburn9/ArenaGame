@@ -28,8 +28,9 @@
             <string>///Initialize the Mauler boss
 event_inherited();
 state = scr_locate_player_state;
-dash_spd = 15;
-attacked = false;
+time = 3;
+timer = time*room_speed;
+dash_count = choose(2, 3, 4);
 </string>
           </argument>
         </arguments>
@@ -65,6 +66,29 @@ if (rm_next != -1 and room != room_last) {
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -84,6 +108,30 @@ if (rm_next != -1 and room != room_last) {
             <kind>1</kind>
             <string>///Step event
 event_inherited();
+
+if (instance_exists(plr_obj)) {
+    //Timer countdown
+    if (timer &gt; 0) {
+        timer--;
+    //If timer == 0
+    } else {
+        //State logic
+        if (acted == true) {
+            state = scr_locate_player_state;
+        } else {
+            //Dash and Throw loop
+            if (dash_count &gt; 0) {
+                state = scr_boss1_dash_state;
+                dash_count--;
+            } else {
+                //If dash_count == 0
+                state = scr_boss1_throw_state;
+                dash_count = choose(2, 3, 4);
+            }
+        }
+    script_execute(state);
+    }
+}
 </string>
           </argument>
         </arguments>

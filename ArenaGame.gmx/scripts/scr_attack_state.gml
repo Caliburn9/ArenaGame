@@ -42,12 +42,12 @@ if (me == WARRIOR and attacked == false) {
         projectile.creator = id;
         
         with (projectile) {
-        speed = 10;
-        var shoot_dir = other.face * 90;
-        direction = shoot_dir;
-        image_angle = shoot_dir;   
-        projectile.dmg_ = o_player_stats.dmg;
-    }
+            speed = 10;
+            var shoot_dir = other.face * 90;
+            direction = shoot_dir;
+            image_angle = shoot_dir;   
+            projectile.dmg_ = o_player_stats.dmg;
+        }
     //}
     attacked = true;
         
@@ -57,12 +57,12 @@ if (me == WARRIOR and attacked == false) {
         projectile.creator = id;
         
         with (projectile) {
-        speed = 10;
-        var shoot_dir = other.face * 90;
-        direction = shoot_dir;
-        image_angle = shoot_dir; 
-        projectile.dmg_ = o_player_stats.dmg;  
-    }
+            speed = 10;
+            var shoot_dir = other.face * 90;
+            direction = shoot_dir;
+            image_angle = shoot_dir; 
+            projectile.dmg_ = o_player_stats.dmg;  
+        }
     //}
     attacked = true;  
 }
