@@ -1,5 +1,6 @@
 ///scr_boss1_dash_state()
 acted = true;
+
 move_towards_point(plr_obj.x, plr_obj.y, spd);
 timer = time*room_speed;
 invul = true;

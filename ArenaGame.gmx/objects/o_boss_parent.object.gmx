@@ -142,7 +142,13 @@ with (o_player_stats) {
             <kind>1</kind>
             <string>///Set state from "damaged" back to "locate player"
 if (state == scr_boss_damaged_state and invul == true) {
-    state = scr_locate_player_state;
+    if (_boss == MAULER) {
+        state = scr_locate_player_state;
+    } else if (_boss == LICH) {
+        state = scr_boss2_chase_state;
+    } /* else if (_boss == GOETIA)
+        state = ;
+    */
     invul = false;
 }
 </string>

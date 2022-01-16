@@ -9,7 +9,7 @@ invul = true;
 
 var projectile = instance_create(x, y, o_projectile);
 projectile.creator = id;
-projectile.speed = 10;
+projectile.speed = 6;
 var shoot_dir = point_direction(x, y, plr_obj.x, plr_obj.y);
 projectile.direction = shoot_dir;
 

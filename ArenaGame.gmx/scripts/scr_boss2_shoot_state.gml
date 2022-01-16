@@ -10,5 +10,9 @@ if (ammo != 0) {
     projectile.direction = shoot_dir;
     
     ammo = 0;
-    alarm[1] = room_speed*2;
+    if (plr_obj == o_a) {
+        alarm[1] = room_speed*4;
+    } else if (plr_obj == o_b or plr_obj == o_c) {
+        alarm[1] = room_speed*2;
+    } 
 }

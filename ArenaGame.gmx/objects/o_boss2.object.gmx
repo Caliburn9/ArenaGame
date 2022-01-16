@@ -138,7 +138,7 @@ event_inherited();
 if (instance_exists(plr_obj)) {
     if (plr_obj == o_a) {
         sight = 64;
-    } else if (plr_obj == o_a or plr_obj == o_c) {
+    } else if (plr_obj == o_b or plr_obj == o_c) {
         sight = 128;
     } 
     
